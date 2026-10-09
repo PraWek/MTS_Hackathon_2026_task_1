@@ -1,0 +1,20 @@
+# Локальное окружение и созданные при запуске файлы не коммитим
+.venv/
+__pycache__/
+*.pyc
+
+# Скрипт запуска создаёт runtime.ini с путём к .venv на этой машине
+**/controllers/*/runtime.ini
+
+# Результаты локальных запусков судьи
+**/controllers/referee/result.json
+result.json
+*.mp4
+
+# Файлы проекта и кэш Webots
+*.wbproj
+.*.wbproj
+
+# Файлы операционной системы
+.DS_Store
+Thumbs.db

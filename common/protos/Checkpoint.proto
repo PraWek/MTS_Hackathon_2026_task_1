@@ -1,0 +1,32 @@
+#VRML_SIM R2025a utf8
+# Контрольная точка или финишная зона в виде светящейся площадки на полу
+# Площадка низкая, поэтому для 3D-лидара она выглядит как пол
+# Фильтр по высоте убирает её из карты препятствий и не раскрывает маршрут
+# Камера видит свечение, робот свободно проходит через площадку
+# Судья проверяет координаты XY и radius, после зачёта меняет color
+PROTO Checkpoint [
+  field SFVec3f  translation  0 0 0
+  field SFString name         "checkpoint"
+  field SFFloat  radius       0.4
+  field SFColor  color        0.15 0.5 1.0
+]
+{
+  Solid {
+    translation IS translation
+    name IS name
+    children [
+      Shape {
+        appearance PBRAppearance {
+          baseColor IS color
+          emissiveColor IS color
+          emissiveIntensity 3.0
+          transparency 0.05
+          metalness 0
+          roughness 0.4
+        }
+        geometry Cylinder { radius IS radius height 0.06 subdivision 40 }
+      }
+    ]
+    # Без boundingObject и Physics столкновений нет, судья проверяет только координаты XY
+  }
+}
